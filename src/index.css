@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+  --neon-blue: #00f2ff;
+  --neon-pink: #ff00ea;
+  --neon-green: #00ff41;
+  --bg-dark: #02020a;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-dark);
+  overflow: hidden;
+  touch-action: none;
+  color: white;
+}
+
+.stat-box {
+  background: rgba(0, 0, 0, 0.8);
+  padding: 5px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--neon-blue);
+  text-align: center;
+  min-width: 80px;
+}
+
+.stat-label {
+  font-size: 9px;
+  color: var(--neon-blue);
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.stat-value {
+  font-size: 16px;
+  font-weight: bold;
+  font-family: monospace;
+}
+
+.btn-control {
+  width: 65px;
+  height: 65px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  border: 2px solid var(--neon-blue);
+  border-radius: 50%;
+  color: white;
+  font-size: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  cursor: pointer;
+  transition: transform 0.1s, background 0.1s;
+}
+
+.btn-control:active {
+  transform: scale(0.9);
+  background: rgba(0, 242, 255, 0.3);
+}
+
+.btn-jump {
+  border-color: var(--neon-pink);
+  color: var(--neon-pink);
+}
+
+.visualizer {
+  display: flex;
+  gap: 4px;
+  height: 30px;
+  align-items: flex-end;
+  margin-bottom: 15px;
+}
+
+.v-bar {
+  width: 5px;
+  background: var(--neon-green);
+  animation: v-bounce 0.4s infinite alternate;
+}
+
+@keyframes v-bounce {
+  from {
+    height: 20%;
+  }
+  to {
+    height: 100%;
+  }
+}
