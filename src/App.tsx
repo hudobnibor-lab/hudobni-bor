@@ -801,13 +801,13 @@ export default function App() {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen w-screen bg-[#02020a]">
-      <div id="game-container" className="relative w-[800px] h-[450px] bg-black border-2 border-[var(--neon-blue)] shadow-[0_0_30px_rgba(0,242,255,0.2)] overflow-hidden max-sm:w-screen max-sm:h-[56.25vw] max-sm:border-none">
+    <div className="flex flex-col justify-start sm:justify-center items-center h-[100dvh] w-screen bg-[#02020a] overflow-hidden">
+      <div id="game-container" className="relative w-full max-w-[800px] aspect-video bg-black sm:border-2 sm:border-[var(--neon-blue)] sm:shadow-[0_0_30px_rgba(0,242,255,0.2)] overflow-hidden flex-shrink-0">
         <canvas 
           ref={canvasRef} 
           width={800} 
           height={450} 
-          className="block w-full h-full"
+          className="block w-full h-full object-contain"
           onMouseDown={(e) => { e.preventDefault(); handleInput(); }}
         />
         
@@ -828,7 +828,7 @@ export default function App() {
           </button>
         </div>
 
-        <div id="controls" className="absolute bottom-[10px] left-0 w-full flex justify-between px-5 box-border z-20 opacity-40 hover:opacity-100 transition-opacity">
+        <div id="controls-desktop" className="absolute bottom-[10px] left-0 w-full hidden sm:flex justify-between px-5 box-border z-20 opacity-40 hover:opacity-100 transition-opacity">
           <div className="flex gap-3">
             <div className="btn-control !w-14 !h-14 !text-xl" {...setupBtn('left')}>◀</div>
             <div className="btn-control !w-14 !h-14 !text-xl" {...setupBtn('right')}>▶</div>
@@ -882,6 +882,26 @@ export default function App() {
             )}
           </div>
         )}
+      </div>
+
+      {/* Mobile controls at the bottom of the screen */}
+      <div id="controls-mobile" className="w-full flex-1 flex flex-col justify-end pb-12 px-8 sm:hidden">
+        <div className="flex justify-between w-full items-end">
+          <div className="flex gap-6">
+            <div 
+              className="w-20 h-20 text-3xl bg-white/10 border-2 border-[var(--neon-blue)] text-[var(--neon-blue)] rounded-full flex items-center justify-center active:bg-[var(--neon-blue)] active:text-black transition-colors select-none" 
+              {...setupBtn('left')}
+            >◀</div>
+            <div 
+              className="w-20 h-20 text-3xl bg-white/10 border-2 border-[var(--neon-blue)] text-[var(--neon-blue)] rounded-full flex items-center justify-center active:bg-[var(--neon-blue)] active:text-black transition-colors select-none" 
+              {...setupBtn('right')}
+            >▶</div>
+          </div>
+          <div 
+            className="w-24 h-24 text-4xl bg-white/10 border-2 border-[var(--neon-blue)] text-[var(--neon-blue)] rounded-full flex items-center justify-center active:bg-[var(--neon-blue)] active:text-black transition-colors select-none" 
+            {...setupBtn('up')}
+          >▲</div>
+        </div>
       </div>
     </div>
   );
